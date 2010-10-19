@@ -15,17 +15,17 @@ function exec(cmd) {
 
 var imagemagick = 'C:/Program Files/ImageMagick-6.6.5-Q16/';
 
-var lang = 'en';
+var locale = 'en';
 if (WScript.Arguments.length == 0) {
-	// assuming english language
+	// assuming english locale
 } else {
-	lang = WScript.Arguments(0);
+	locale = WScript.Arguments(0);
 }
 
 var fso = new ActiveXObject('Scripting.FileSystemObject');
 
 var s;
-var f = fso.OpenTextFile('js/openid-jquery-' + lang + '.js');
+var f = fso.OpenTextFile('js/openid-jquery-' + locale + '.js');
 try {
 	s = f.ReadAll();
 } finally {
@@ -33,6 +33,16 @@ try {
 }
 var openid = {};
 eval(s);
+
+if (openid.locale != locale) {
+	WScript.Echo('error: locale setting mismatch in js/openid-jquery-' + locale + '.js');
+	WScript.Quit(-1);
+}
+if (openid.locale != openid.sprite) {
+	WScript.Echo('error: ' + openid.locale + ' localization is reusing sprite from ' + openid.sprite 
+			+ ' localization. refresh sprite on original localization or don\'t reuse the sprite');
+	WScript.Quit(-1);
+}
 
 // generate small montage
 var cmd = imagemagick + 'montage';
@@ -61,7 +71,7 @@ cmd += ' -tile ' + i + 'x1 -geometry 100x60>+0+0 ' + large;
 exec(cmd);
 
 // generate final montage
-var cmd = imagemagick + 'convert ' + large + ' ' + small + ' -append images/openid-providers-' + lang + '.png';
+var cmd = imagemagick + 'convert ' + large + ' ' + small + ' -append images/openid-providers-' + locale + '.png';
 exec(cmd);
 
 fso.DeleteFile(large);

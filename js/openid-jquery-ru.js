@@ -67,7 +67,8 @@ var providers_small = {
 	}
 };
 
-openid.lang = 'ru';
+openid.locale = 'ru';
+openid.sprite = 'ru'; // reused in ukrainian localization
 openid.demo_text = 'В демонстрационном режиме на клиенте. В действительности произошел бы сабмит следующего OpenID:';
 openid.signin_text = 'Войти';
 openid.image_title = 'войти c {provider}';

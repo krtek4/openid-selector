@@ -67,7 +67,8 @@ var providers_small = {
 	}
 };
 
-openid.lang = 'uk';
+openid.locale = 'uk';
+openid.sprite = 'ru'; // use same sprite as russian localization
 openid.demo_text = 'В демонстраційному режимі на клієнті. Насправді пройшов би сабміт наступного OpenID:';
 openid.signin_text = 'Увійти';
 openid.image_title = 'увійти з {provider}';

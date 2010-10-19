@@ -11,7 +11,7 @@ See demo.html source
 TROUBLESHOOTING
 ----------------------------
 Please remember after you change list of providers, you must run 
-generate-sprite.js <lang> to refresh sprite image
+generate-sprite.js <locale> to refresh sprite image
 
 generate-sprite.js requires ImageMagick to be installed and works
 only in Windows (Linux and Apple users can run in VM)
@@ -19,6 +19,16 @@ only in Windows (Linux and Apple users can run in VM)
 Before running generate-sprite.js for the first time, check its
 source code and correct line 16 (var imagemagick = '<...>';) to 
 point to ImageMagick install dir.
+
+Please also remember that sprites may be reused: if two 
+localizations have the same provider list that differs only in text,
+it is reasonable to reuse the sprite: for example German 
+localization is reusing sprite from English localization, Ukrainian 
+localization is reusing sprite from Russian localization, etc.
+
+So, if provider list in root localization changes, localizations 
+that reuse the sprite must be also changed, or unlinked or relinked
+to new root localization. 
 
 HOWTO
 -------------------

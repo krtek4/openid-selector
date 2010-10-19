@@ -1,8 +1,8 @@
 /*
-        Simple OpenID Plugin
-        http://code.google.com/p/openid-selector/
-        
-        This code is licenced under the New BSD License.
+	Simple OpenID Plugin
+	http://code.google.com/p/openid-selector/
+	
+	This code is licenced under the New BSD License.
 */
 
 var providers_large = {
@@ -89,7 +89,8 @@ var providers_small = {
 	}
 };
 
-openid.lang = 'de';
+openid.locale = 'de';
+openid.sprite = 'en'; // use same sprite as english localization
 openid.demo_text = 'Demo Modus. Normalerweise würde die folgende OpenID übermittelt werden:';
 openid.signin_text = 'Anmelden';
 openid.image_title = 'Mit {provider} anmelden';

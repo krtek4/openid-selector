@@ -16,7 +16,8 @@ var openid = {
 	cookie_path: '/',
 	
 	img_path: 'images/',
-	lang: null, // language, is set in openid-jquery-<lang>.js
+	locale: null, // is set in openid-jquery-<locale>.js
+	sprite: null, // usually equals to locale, is set in openid-jquery-<locale>.js
 	signin_text: null, // text on submit button on the form
 	input_id: null,
 	provider_url: null,
@@ -69,7 +70,7 @@ var openid = {
    	  	var x = box_size == 'small' ? -index*24 : -index*100;
    	  	var y = box_size == 'small' ? -60 : 0;
         return '<a title="'+this.image_title.replace('{provider}', provider["name"])+'" href="javascript:openid.signin(\'' + box_id + '\');"' +
-    			' style="background: #FFF url(' + this.img_path + 'openid-providers-' + this.lang + '.png); background-position: ' + x + 'px ' + y + 'px" ' +
+    			' style="background: #FFF url(' + this.img_path + 'openid-providers-' + this.sprite + '.png); background-position: ' + x + 'px ' + y + 'px" ' +
     			'class="' + box_id + ' openid_' + box_size + '_btn"></a>';
     },
     /* Provider image click */
