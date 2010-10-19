@@ -42,7 +42,12 @@ HOWTO
       to PNG format (it might generate several files, just pick 16x16
       rendition and rename it as <provider>.ico.png w/o .1.)
 
-2. how to plug-in facebook provider
+2. how to create new (large) provider image
+   a. grab provider logo image from its website
+   b. resize the image not to exceed 90x30 rect
+   c. save as the image as <provider>.gif in ./images.large folder
+
+3. how to plug-in facebook provider
    TODO, it is possible see FAQ comments
 
 LICENSE
