@@ -48,7 +48,17 @@ HOWTO
    c. save as the image as <provider>.gif in ./images.large folder
 
 3. how to plug-in facebook provider
-   TODO, it is possible see FAQ comments
+   put the following code in providers_large or providers_small:
+   facebook = {
+     name: 'Facebook',
+     url: "javascript:facebook_click();"
+   }
+   where facebook_click is something like:
+   function facebook_click() {
+     $('#<id of html fbconnect element>').click();
+   }
+   the same mechanism also applies if you want to plug-in any oauth or
+   xauth provider
 
 LICENSE
 -------------------
