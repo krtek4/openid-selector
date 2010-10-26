@@ -38,14 +38,14 @@ var providers_small = {
 		url : 'http://{username}.livejournal.com/'
 	},
 	/* flickr: {
-	    name: 'Flickr',        
-	    label: 'Bitte den Flickr Benutzernamen eingeben.',
-	    url: 'http://flickr.com/{username}/'
+		name: 'Flickr',        
+		label: 'Bitte den Flickr Benutzernamen eingeben.',
+		url: 'http://flickr.com/{username}/'
 	}, */
 	/* technorati: {
-	    name: 'Technorati',
-	    label: 'Bitte den Technorati Benutzernamen eingeben.',
-	    url: 'http://technorati.com/people/technorati/{username}/'
+		name: 'Technorati',
+		label: 'Bitte den Technorati Benutzernamen eingeben.',
+		url: 'http://technorati.com/people/technorati/{username}/'
 	}, */
 	wordpress : {
 		name : 'Wordpress',
@@ -63,14 +63,14 @@ var providers_small = {
 		url : 'http://{username}.pip.verisignlabs.com/'
 	},
 	/* vidoop: {
-	    name: 'Vidoop',
-	    label: 'Ihr Vidoop Benutzername',
-	    url: 'http://{username}.myvidoop.com/'
+		name: 'Vidoop',
+		label: 'Ihr Vidoop Benutzername',
+		url: 'http://{username}.myvidoop.com/'
 	}, */
 	/* launchpad: {
-	    name: 'Launchpad',
-	    label: 'Ihr Launchpad Benutzername',
-	    url: 'https://launchpad.net/~{username}'
+		name: 'Launchpad',
+		label: 'Ihr Launchpad Benutzername',
+		url: 'https://launchpad.net/~{username}'
 	}, */
 	claimid : {
 		name : 'ClaimID',
