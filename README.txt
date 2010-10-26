@@ -62,5 +62,5 @@ HOWTO
 
 LICENSE
 -------------------
-This code is licenced under the New BSD License.
+This code is licensed under the New BSD License.
 
