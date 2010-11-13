@@ -1,9 +1,9 @@
-/**
- * Simple OpenID Plugin
- * 
- * @see 	http://code.google.com/p/openid-selector/
- * @licence New BSD License <http://www.opensource.org/licenses/bsd-license.php>
- */
+/*
+	Simple OpenID Plugin
+	http://code.google.com/p/openid-selector/
+	
+	This code is licensed under the New BSD License.
+*/
 
 /**
  * @class OpenIdProviders
@@ -139,8 +139,9 @@ var OpenIdSelector = new Class({
 		$('openid_form').addEvent('submit', this.submit.bind(this));
 
 		var box_id = Cookie.read(this.cookie_name);
-		if (box_id !== null)
+		if (box_id !== null) {
 			this.signin(box_id, true);
+		}
 	},
 
 	/**
@@ -170,28 +171,24 @@ var OpenIdSelector = new Class({
 	 * @return {Void}
 	 */
 	signin : function(box_id, onload) {
-
 		var provider = this.providers.all[box_id];
-		if (!provider)
+		if (!provider) {
 			return;
-
+		}
 		this.highlight(box_id);
-
 		Cookie.write(this.cookie_name, box_id, {
 			duration : this.cookie_expires,
 			path : this.cookie_path
 		});
-
 		// prompt user for input?
-		if (provider.label) {
+		if (provider['label']) {
 			this.useInputBox(provider);
 			this.provider_url = provider.url;
-		}
-
-		else {
+		} else {
 			this.setOpenIdUrl(provider.url);
-			if (!onload)
+			if (!onload) {
 				$('openid_form').submit();
+			}
 		}
 	},
 
@@ -215,9 +212,7 @@ var OpenIdSelector = new Class({
 	 * @return {Void}
 	 */
 	setOpenIdUrl : function(url) {
-
 		var hidden = $(this.input_id);
-
 		if (hidden) {
 			hidden.set('value', url);
 		} else {
@@ -236,8 +231,9 @@ var OpenIdSelector = new Class({
 	highlight : function(box_id) {
 		// remove previous highlight.
 		var highlight = $('openid_highlight');
-		if (highlight)
+		if (highlight) {
 			$('openid_highlight').getFirst('a').replaces(highlight);
+		}
 		// add new highlight.
 		new Element('div', {
 			'id' : 'openid_highlight'
@@ -248,29 +244,23 @@ var OpenIdSelector = new Class({
 	 * @return {Void}
 	 */
 	useInputBox : function(provider) {
-
 		var input_area = $('openid_input_area');
-
 		var html = '';
 		var id = 'openid_username';
 		var value = '';
 		var label = provider['label'];
 		var style = '';
-
-		if (label)
+		if (label) {
 			html = '<p>' + label + '</p>';
-
+		}
 		if (provider['name'] == 'OpenID') {
 			id = this.input_id;
 			value = 'http://';
-			style = 'background: #fff url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
+			style = 'background:#FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
 		}
-
 		html += '<input id="' + id + '" type="text" style="' + style + '" name="' + id + '" value="' + value + '" />'
 				+ '<input id="openid_submit" type="submit" value="Sign-In"/>';
-
 		input_area.set('html', html);
-
 		$(id).focus();
 	}
 });
