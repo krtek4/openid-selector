@@ -12,7 +12,8 @@
 	<script type="text/javascript" src="js/openid-en.js"></script>
 	<script type="text/javascript">
 		window.addEvent('domready', function(){
-			new OpenIdSelector('openid_identifier');
+			var openid = new OpenIdSelector('openid_identifier');
+			openid.setDemoMode(true); //Stops form submission for client javascript-only test purposes
 		});
 	</script>
 	<!-- /Simple OpenID Selector -->

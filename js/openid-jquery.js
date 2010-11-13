@@ -60,6 +60,9 @@ var openid = {
 		}
 	},
 
+	/**
+	 * @return {String}
+	 */
 	getBoxHTML : function(box_id, provider, box_size, index) {
 		if (this.no_sprite) {
 			var image_ext = box_size == 'small' ? '.ico.gif' : '.gif';
@@ -99,7 +102,11 @@ var openid = {
 		}
 	},
 
-	/* Sign-in button click */
+	/**
+	 * Sign-in button click
+	 * 
+	 * @return {Boolean}
+	 */
 	submit : function() {
 		var url = openid.provider_url;
 		if (url) {
@@ -118,6 +125,9 @@ var openid = {
 		return true;
 	},
 
+	/**
+	 * @return {Void}
+	 */
 	setOpenIdUrl : function(url) {
 		var hidden = document.getElementById(this.input_id);
 		if (hidden != null) {
@@ -127,6 +137,9 @@ var openid = {
 		}
 	},
 
+	/**
+	 * @return {Void}
+	 */
 	highlight : function(box_id) {
 		// remove previous highlight.
 		var highlight = $('#openid_highlight');

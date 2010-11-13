@@ -55,7 +55,7 @@ var OpenIdSelector = new Class({
 			}
 		}
 		$('openid_form').addEvent('submit', this.submit.bind(this));
-		var box_id = Cookie.read(this.cookie_name);
+		var box_id = this.readCookie();
 		if (box_id) {
 			this.signin(box_id, true);
 		}
@@ -93,14 +93,12 @@ var OpenIdSelector = new Class({
 			return;
 		}
 		this.highlight(box_id);
-		Cookie.write(this.cookie_name, box_id, {
-			duration : this.cookie_expires,
-			path : this.cookie_path
-		});
+		this.setCookie(box_id);
+		this.provider_id = box_id;
+		this.provider_url = provider['url'];
 		// prompt user for input?
 		if (provider['label']) {
 			this.useInputBox(provider);
-			this.provider_url = provider.url;
 		} else {
 			this.setOpenIdUrl(provider.url);
 			if (!onload) {
@@ -164,6 +162,17 @@ var OpenIdSelector = new Class({
 		new Element('div', {
 			'id' : 'openid_highlight'
 		}).wraps($$('.' + box_id)[0]);
+	},
+
+	setCookie : function(value) {
+		Cookie.write(this.cookie_name, value, {
+			duration : this.cookie_expires,
+			path : this.cookie_path
+		});
+	},
+
+	readCookie : function() {
+		return Cookie.read(this.cookie_name);
 	},
 
 	/**
