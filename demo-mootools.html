@@ -12,8 +12,8 @@
 	<script type="text/javascript" src="js/openid-en.js"></script>
 	<script type="text/javascript">
 		window.addEvent('domready', function(){
-			new OpenIdSelector('openid_identifier');
-			openid.demoMode = true; //Stops form submission for client javascript-only test purposes
+			openid.init('openid_identifier');
+			openid.setDemoMode(true); //Stops form submission for client javascript-only test purposes
 		});
 	</script>
 	<!-- /Simple OpenID Selector -->
@@ -32,6 +32,7 @@
 	<!-- Simple OpenID Selector -->
 	<form action="examples/consumer/try_auth.php" method="get" id="openid_form">
 		<input type="hidden" name="action" value="verify" />
+		<input id="openid_form_submit" type="submit" style="display: none;" />
 		<fieldset>
 			<legend>Sign-in or Create New Account</legend>
 			<div id="openid_choice">

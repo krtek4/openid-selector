@@ -22,13 +22,8 @@ var openid = {
 	signin_text : null, // text on submit button on the form
 	all_small : false, // output large providers w/ small icons
 	no_sprite : false, // don't use sprite image
-	image_title : '{provider}' // for image title
-};
+	image_title : '{provider}', // for image title
 
-/**
- * @class OpenIdSelector
- */
-var OpenIdSelector = new Class({
 	input_id : null,
 	provider_url : null,
 	provider_id : null,
@@ -38,7 +33,7 @@ var OpenIdSelector = new Class({
 	 * 
 	 * @return {Void}
 	 */
-	initialize : function(input_id) {
+	init : function(input_id) {
 		providers = $merge(providers_large, providers_small);
 		var openid_btns = $('openid_btns');
 		this.input_id = input_id;
@@ -57,7 +52,7 @@ var OpenIdSelector = new Class({
 				box.inject(openid_btns);
 			}
 		}
-		$('openid_form').addEvent('submit', this.submit.bind(this));
+		$('openid_form').addEvent('submit', this.submit);
 		var box_id = this.readCookie();
 		if (box_id) {
 			this.signin(box_id, true);
@@ -71,32 +66,26 @@ var OpenIdSelector = new Class({
 		if (this.no_sprite) {
 			var image_ext = box_size == 'small' ? '.ico.gif' : '.gif';
 			return new Element('a', {
-				'href' : "javascript:void(0);",
+				'href' : "javascript:openid.signin('" + box_id + "');",
 				'title' : openid.image_title.replace('{provider}', provider["name"]),
 				'class' : box_id + ' openid_' + box_size + '_btn',
 				'styles' : {
 					'display' : 'block',
 					'background' : '#FFF url(' + openid.img_path + '../images./' + box_size + '/' + box_id + image_ext
 							+ ') no-repeat center center'
-				},
-				'events' : {
-					'click' : this.signin.pass(box_id, this)
 				}
 			});
 		}
 		var x = box_size == 'small' ? -index * 24 : -index * 100;
 		var y = box_size == 'small' ? -60 : 0;
 		return new Element('a', {
-			'href' : "javascript:void(0);",
+			'href' : "javascript:openid.signin('" + box_id + "');",
 			'title' : openid.image_title.replace('{provider}', provider["name"]),
 			'class' : box_id + ' openid_' + box_size + '_btn',
 			'styles' : {
 				'background' : '#FFF url(' + openid.img_path + 'openid-providers-' + openid.sprite + '.png'
 						+ ') no-repeat center center',
 				'background-position' : x + 'px ' + y + 'px'
-			},
-			'events' : {
-				'click' : this.signin.pass(box_id, this)
 			}
 		});
 	},
@@ -121,7 +110,7 @@ var OpenIdSelector = new Class({
 		} else {
 			$('openid_input_area').empty();
 			if (!onload) {
-				$('openid_form').submit();
+				$('openid_form_submit').click(); //$('openid_form').submit();
 			}
 		}
 	},
@@ -132,14 +121,14 @@ var OpenIdSelector = new Class({
 	 * @return {Boolean}
 	 */
 	submit : function() {
-		var url = this.provider_url;
+		var url = openid.provider_url;
 		if (url) {
 			if ($('openid_username'))
 				url = url.replace('{username}', $('openid_username').get('value'));
-			this.setOpenIdUrl(url);
+			openid.setOpenIdUrl(url);
 		}
 		if (openid.demo) {
-			alert(openid.demo_text + "\r\n" + document.getElementById(this.input_id).value);
+			alert(openid.demo_text + "\r\n" + document.getElementById(openid.input_id).value);
 			return false;
 		}
 		if (url.indexOf("javascript:") == 0) {
@@ -183,14 +172,14 @@ var OpenIdSelector = new Class({
 	},
 
 	setCookie : function(value) {
-		Cookie.write(openid.cookie_name, value, {
-			duration : openid.cookie_expires,
-			path : openid.cookie_path
+		Cookie.write(this.cookie_name, value, {
+			duration : this.cookie_expires,
+			path : this.cookie_path
 		});
 	},
 
 	readCookie : function() {
-		return Cookie.read(openid.cookie_name);
+		return Cookie.read(this.cookie_name);
 	},
 
 	/**
@@ -209,11 +198,16 @@ var OpenIdSelector = new Class({
 		if (provider['name'] == 'OpenID') {
 			id = this.input_id;
 			value = 'http://';
-			style = 'background: #FFF url(' + openid.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
+			style = 'background: #FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
 		}
 		html += '<input id="' + id + '" type="text" style="' + style + '" name="' + id + '" value="' + value + '" />'
-				+ '<input id="openid_submit" type="submit" value="' + openid.signin_text + '"/>';
+				+ '<input id="openid_submit" type="submit" value="' + this.signin_text + '"/>';
+		input_area.empty();
 		input_area.set('html', html);
 		$(id).focus();
+	},
+
+	setDemoMode : function(demoMode) {
+		this.demo = demoMode;
 	}
-});
+};
