@@ -27,6 +27,11 @@ var openid = {
 	no_sprite : false, // don't use sprite image
 	image_title : '{provider}', // for image title
 
+	/**
+	 * Class constructor
+	 * 
+	 * @return {Void}
+	 */
 	init : function(input_id) {
 		providers = $.extend({}, providers_large, providers_small);
 		var openid_btns = $('#openid_btns');
@@ -69,7 +74,11 @@ var openid = {
 				+ 'class="' + box_id + ' openid_' + box_size + '_btn"></a>';
 	},
 
-	/* Provider image click */
+	/**
+	 * Provider image click
+	 * 
+	 * @return {Void}
+	 */
 	signin : function(box_id, onload) {
 		var provider = providers[box_id];
 		if (!provider) {
@@ -148,6 +157,9 @@ var openid = {
 		return null;
 	},
 
+	/**
+	 * @return {Void}
+	 */
 	useInputBox : function(provider) {
 		var input_area = $('#openid_input_area');
 		var html = '';
