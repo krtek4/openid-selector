@@ -67,11 +67,11 @@ var openid = {
 			var image_ext = box_size == 'small' ? '.ico.gif' : '.gif';
 			return new Element('a', {
 				'href' : "javascript:openid.signin('" + box_id + "');",
-				'title' : openid.image_title.replace('{provider}', provider["name"]),
+				'title' : this.image_title.replace('{provider}', provider["name"]),
 				'class' : box_id + ' openid_' + box_size + '_btn',
 				'styles' : {
 					'display' : 'block',
-					'background' : '#FFF url(' + openid.img_path + '../images./' + box_size + '/' + box_id + image_ext
+					'background' : '#FFF url(' + this.img_path + '../images.' + box_size + '/' + box_id + image_ext
 							+ ') no-repeat center center'
 				}
 			});
@@ -80,10 +80,10 @@ var openid = {
 		var y = box_size == 'small' ? -60 : 0;
 		return new Element('a', {
 			'href' : "javascript:openid.signin('" + box_id + "');",
-			'title' : openid.image_title.replace('{provider}', provider["name"]),
+			'title' : this.image_title.replace('{provider}', provider["name"]),
 			'class' : box_id + ' openid_' + box_size + '_btn',
 			'styles' : {
-				'background' : '#FFF url(' + openid.img_path + 'openid-providers-' + openid.sprite + '.png'
+				'background' : '#FFF url(' + this.img_path + 'openid-providers-' + this.sprite + '.png'
 						+ ') no-repeat center center',
 				'background-position' : x + 'px ' + y + 'px'
 			}
