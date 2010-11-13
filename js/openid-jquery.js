@@ -20,12 +20,13 @@ var openid = {
 	sprite : null, // usually equals to locale, is set in
 	// openid-<locale>.js
 	signin_text : null, // text on submit button on the form
-	input_id : null,
-	provider_url : null,
-	provider_id : null,
 	all_small : false, // output large providers w/ small icons
 	no_sprite : false, // don't use sprite image
 	image_title : '{provider}', // for image title
+
+	input_id : null,
+	provider_url : null,
+	provider_id : null,
 
 	/**
 	 * Class constructor
@@ -41,16 +42,14 @@ var openid = {
 		var i = 0;
 		// add box for each provider
 		for (id in providers_large) {
-			if (this.all_small) {
-				openid_btns.append(this.getBoxHTML(id, providers_large[id], 'small', i++));
-			} else {
-				openid_btns.append(this.getBoxHTML(id, providers_large[id], 'large', i++));
-			}
+			box = this.getBoxHTML(id, providers_large[id], (this.all_small ? 'small' : 'large'), i++);
+			openid_btns.append(box);
 		}
 		if (providers_small) {
 			openid_btns.append('<br/>');
 			for (id in providers_small) {
-				openid_btns.append(this.getBoxHTML(id, providers_small[id], 'small', i++));
+				box = this.getBoxHTML(id, providers_small[id], 'small', i++);
+				openid_btns.append(box);
 			}
 		}
 		$('#openid_form').submit(this.submit);
