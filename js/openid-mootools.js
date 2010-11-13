@@ -131,7 +131,7 @@ var OpenIdSelector = new Class({
         if (this.providers.small) {
             openid_btns.grab(new Element('br'));
             for (id in this.providers.small) {
-                box = this.getBoxHTML(this.providers.small[id], 'small', '.ico');
+                box = this.getBoxHTML(this.providers.small[id], 'small', '.ico.gif');
                 box.inject(openid_btns);
             }
         }
@@ -154,7 +154,7 @@ var OpenIdSelector = new Class({
             'class': box_id + ' openid_' + box_size + '_btn',
             'styles': {
         		'display': 'block',
-                'background': '#fff url(' + this.img_path + box_id + image_ext + ') no-repeat center center'
+                'background': '#fff url(' + this.img_path + (box_size == 'small' ? '../images.small/' : '../images.large/') + box_id + image_ext + ') no-repeat center center'
             },
             'events': {
             	'click': openid.signin.pass(box_id, openid)
