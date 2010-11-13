@@ -25,7 +25,7 @@ if (WScript.Arguments.length == 0) {
 var fso = new ActiveXObject('Scripting.FileSystemObject');
 
 var s;
-var f = fso.OpenTextFile('js/openid-jquery-' + locale + '.js');
+var f = fso.OpenTextFile('js/openid-' + locale + '.js');
 try {
 	s = f.ReadAll();
 } finally {
@@ -35,7 +35,7 @@ var openid = {};
 eval(s);
 
 if (openid.locale != locale) {
-	WScript.Echo('error: locale setting mismatch in js/openid-jquery-' + locale + '.js');
+	WScript.Echo('error: locale setting mismatch in js/openid-' + locale + '.js');
 	WScript.Quit(-1);
 }
 if (openid.locale != openid.sprite) {

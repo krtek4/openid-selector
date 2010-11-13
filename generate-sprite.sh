@@ -34,7 +34,7 @@ if [ ${#} -gt 0 ]; then
   LOCALE=$1
 fi
 
-JSFILE=js/openid-jquery-${LOCALE}.js
+JSFILE=js/openid-${LOCALE}.js
 
 if [ ! -s ${JSFILE} ]; then
   echo "locale not found"

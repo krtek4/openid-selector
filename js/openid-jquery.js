@@ -16,9 +16,9 @@ var openid = {
 	cookie_path : '/',
 
 	img_path : 'images/',
-	locale : null, // is set in openid-jquery-<locale>.js
+	locale : null, // is set in openid-<locale>.js
 	sprite : null, // usually equals to locale, is set in
-	// openid-jquery-<locale>.js
+	// openid-<locale>.js
 	signin_text : null, // text on submit button on the form
 	input_id : null,
 	provider_url : null,
