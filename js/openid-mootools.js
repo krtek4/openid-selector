@@ -76,7 +76,7 @@ var OpenIdSelector = new Class({
 				'class' : box_id + ' openid_' + box_size + '_btn',
 				'styles' : {
 					'display' : 'block',
-					'background' : '#FF url(' + openid.img_path + '../images./' + box_size + '/' + box_id + image_ext
+					'background' : '#FFF url(' + openid.img_path + '../images./' + box_size + '/' + box_id + image_ext
 							+ ') no-repeat center center'
 				},
 				'events' : {
@@ -134,9 +134,8 @@ var OpenIdSelector = new Class({
 	submit : function() {
 		var url = this.provider_url;
 		if (url) {
-			url = url.substitute({
-				'username' : $('openid_username').get('value')
-			});
+			if ($('openid_username'))
+				url = url.replace('{username}', $('openid_username').get('value'));
 			this.setOpenIdUrl(url);
 		}
 		if (openid.demo) {
@@ -210,7 +209,7 @@ var OpenIdSelector = new Class({
 		if (provider['name'] == 'OpenID') {
 			id = this.input_id;
 			value = 'http://';
-			style = 'background:#FFF url(' + openid.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
+			style = 'background: #FFF url(' + openid.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
 		}
 		html += '<input id="' + id + '" type="text" style="' + style + '" name="' + id + '" value="' + value + '" />'
 				+ '<input id="openid_submit" type="submit" value="' + openid.signin_text + '"/>';
