@@ -14,8 +14,8 @@ Please remember after you change list of providers, you must run
 generate-sprite.js <locale> to refresh sprite image
 
 generate-sprite.js requires ImageMagick to be installed and works
-only in Windows (Apple users can run in VM, Linux users must run
-./generate-sprite.sh)
+only in Windows (non-Windows users must run ./generate-sprite.sh or
+./generate-sprite.rb)
 
 Before running generate-sprite.js for the first time, check its
 source code and correct line 16 (var imagemagick = '<...>';) to 
