@@ -16,15 +16,23 @@ var openid = {
 	cookie_path : '/',
 
 	img_path : 'images/',
-	lang : null, // language, is set in openid-jquery-<lang>.js
+	locale : null, // is set in openid-<locale>.js
+	sprite : null, // usually equals to locale, is set in
+	// openid-<locale>.js
 	signin_text : null, // text on submit button on the form
-	input_id : null,
-	provider_url : null,
-	provider_id : null,
 	all_small : false, // output large providers w/ small icons
 	no_sprite : false, // don't use sprite image
 	image_title : '{provider}', // for image title
 
+	input_id : null,
+	provider_url : null,
+	provider_id : null,
+
+	/**
+	 * Class constructor
+	 * 
+	 * @return {Void}
+	 */
 	init : function(input_id) {
 		providers = {};
 		Object.extend(providers, providers_large);
@@ -36,15 +44,14 @@ var openid = {
 		var i = 0;
 		// add box for each provider
 		for (id in providers_large) {
-			if (this.all_small) {
-				openid_btns.insert(this.getBoxHTML(id, providers_large[id], 'small', i++));
-			} else
-				openid_btns.insert(this.getBoxHTML(id, providers_large[id], 'large', i++));
+			box = this.getBoxHTML(id, providers_large[id], (this.all_small ? 'small' : 'large'), i++);
+			openid_btns.insert(box);
 		}
 		if (providers_small) {
 			openid_btns.insert('<br/>');
 			for (id in providers_small) {
-				openid_btns.insert(this.getBoxHTML(id, providers_small[id], 'small', i++));
+				box = this.getBoxHTML(id, providers_small[id], 'small', i++);
+				openid_btns.insert(box);
 			}
 		}
 		$('openid_form').submit = this.submit;
@@ -54,6 +61,9 @@ var openid = {
 		}
 	},
 
+	/**
+	 * @return {String}
+	 */
 	getBoxHTML : function(box_id, provider, box_size, index) {
 		if (this.no_sprite) {
 			var image_ext = box_size == 'small' ? '.ico.gif' : '.gif';
@@ -64,11 +74,15 @@ var openid = {
 		var x = box_size == 'small' ? -index * 24 : -index * 100;
 		var y = box_size == 'small' ? -60 : 0;
 		return '<a title="' + this.image_title.replace('{provider}', provider["name"]) + '" href="javascript:openid.signin(\'' + box_id + '\');"'
-				+ ' style="background: #FFF url(' + this.img_path + 'openid-providers-' + this.lang + '.png); background-position: ' + x + 'px ' + y + 'px" '
+				+ ' style="background: #FFF url(' + this.img_path + 'openid-providers-' + this.sprite + '.png); background-position: ' + x + 'px ' + y + 'px" '
 				+ 'class="' + box_id + ' openid_' + box_size + '_btn"></a>';
 	},
 
-	/* Provider image click */
+	/**
+	 * Provider image click
+	 * 
+	 * @return {Void}
+	 */
 	signin : function(box_id, onload) {
 		var provider = providers[box_id];
 		if (!provider) {
@@ -89,7 +103,11 @@ var openid = {
 		}
 	},
 
-	/* Sign-in button click */
+	/**
+	 * Sign-in button click
+	 * 
+	 * @return {Boolean}
+	 */
 	submit : function() {
 		var url = openid.provider_url;
 		var username_field = $('openid_username');
@@ -102,9 +120,17 @@ var openid = {
 			alert(openid.demo_text + "\r\n" + document.getElementById(openid.input_id).value);
 			return false;
 		}
+		if (url.indexOf("javascript:") == 0) {
+			url = url.substr("javascript:".length);
+			eval(url);
+			return false;
+		}
 		return true;
 	},
 
+	/**
+	 * @return {Void}
+	 */
 	setOpenIdUrl : function(url) {
 		var hidden = document.getElementById(this.input_id);
 		if (hidden != null) {
@@ -114,13 +140,15 @@ var openid = {
 		}
 	},
 
+	/**
+	 * @return {Void}
+	 */
 	highlight : function(box_id) {
 		// remove previous highlight.
 		var highlight = $('openid_highlight');
 		if (highlight) {
 			fc = highlight.firstChild;
 			highlight.parentNode.replaceChild(fc, highlight);
-			// highlight.replaceWith($('#openid_highlight a')[0]);
 		}
 		// add new highlight.
 		var box = $$('.' + box_id)[0];
@@ -128,7 +156,6 @@ var openid = {
 		wrapper.id = 'openid_highlight';
 		box.parentNode.replaceChild(wrapper, box);
 		wrapper.appendChild(box);
-		// $('.'+box_id).wrap('<div id="openid_highlight"></div>');
 	},
 
 	setCookie : function(value) {
@@ -151,6 +178,9 @@ var openid = {
 		return null;
 	},
 
+	/**
+	 * @return {Void}
+	 */
 	useInputBox : function(provider) {
 		var input_area = $('openid_input_area');
 		var html = '';
