@@ -39,7 +39,9 @@ var openid = {
 		Object.extend(providers, providers_small);
 		var openid_btns = $('openid_btns');
 		this.input_id = input_id;
-		$('openid_choice').show();
+		$('openid_choice').setStyle({
+			display: 'block'
+		});
 		$('openid_input_area').innerHTML = "";
 		var i = 0;
 		// add box for each provider
