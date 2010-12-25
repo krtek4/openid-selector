@@ -6,8 +6,9 @@
 */
 
 var providers;
-
-var openid = {
+var openid;
+(function ($) {
+openid = {
 	version : '1.3', // version constant
 	demo : false,
 	demo_text : null,
@@ -198,3 +199,4 @@ var openid = {
 		this.demo = demoMode;
 	}
 };
+})(jQuery);
