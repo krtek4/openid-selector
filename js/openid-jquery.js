@@ -9,7 +9,7 @@ var providers;
 var openid;
 (function ($) {
 openid = {
-	version : '1.3-beta1', // version constant
+	version : '1.3', // version constant
 	demo : false,
 	demo_text : null,
 	cookie_expires : 6 * 30, // 6 months.
