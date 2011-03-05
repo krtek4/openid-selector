@@ -256,4 +256,5 @@ moose.openidselector.prototype.setDemoMode = function() {
 // If you don't do that, you get an "Uncaught ReferenceError: moose is not defined"
 // http://code.google.com/intl/de-DE/closure/compiler/docs/api-tutorial3.html#export
 window['openidselector'] = moose.openidselector; // <-- Constructor
+goog.exportSymbol('openidselector.prototype.signin', moose.openidselector.prototype.signin); // <-- Constructor
 window['openid'] = goog.object.create();
