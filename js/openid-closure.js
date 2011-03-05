@@ -217,17 +217,19 @@ moose.openidselector.prototype.useInputBox = function(provider) {
 	var value = '';
 	var label = provider['label'];
 	var style = '';
+    goog.dom.removeChildren(input_area);
 	if (label) {
 		var html = goog.dom.createDom('p', '', label);
 	} else {
         var html = goog.dom.createDom('p', '');
     }
+	goog.dom.append(input_area,html);
 	if (provider['name'] == 'OpenID') {
 		id = this.input_id;
 		value = 'http://';
 		style = 'background: #FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
 	}
-    goog.dom.append(html, 
+    goog.dom.append(input_area, 
                     goog.dom.createDom('input', {
                         'id' : id,
                         'type': "text",
@@ -236,15 +238,13 @@ moose.openidselector.prototype.useInputBox = function(provider) {
                         'value': value
                     })
     );
-    goog.dom.append(html, 
+    goog.dom.append(input_area, 
                     goog.dom.createDom('input', {
                         'id' : 'openid_submit',
                         'type': "submit",
                         'value': this.signin_text
                     })
     );
-    goog.dom.removeChildren(input_area);
-	goog.dom.append(input_area,html);
     goog.dom.getElement(id).focus();
 };
 
