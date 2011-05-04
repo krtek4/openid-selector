@@ -101,7 +101,9 @@ var openid = {
 		} else {
 			$('openid_input_area').innerHTML = '';
 			if (!onload) {
-				$('openid_form').submit();
+				if (this.submit()) {
+					$('openid_form').submit();
+				}
 			}
 		}
 	},
