@@ -41,6 +41,7 @@ var openid = {
 		$('openid_input_area').empty();
 		var i = 0;
 		// add box for each provider
+		var id, box;
 		for (id in providers_large) {
 			box = this.getBoxHTML(id, providers_large[id], (this.all_small ? 'small' : 'large'), i++);
 			box.inject(openid_btns);

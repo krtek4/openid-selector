@@ -45,6 +45,7 @@ var openid = {
 		$('openid_input_area').innerHTML = "";
 		var i = 0;
 		// add box for each provider
+		var id, box;
 		for (id in providers_large) {
 			box = this.getBoxHTML(id, providers_large[id], (this.all_small ? 'small' : 'large'), i++);
 			openid_btns.insert(box);
@@ -149,7 +150,7 @@ var openid = {
 		// remove previous highlight.
 		var highlight = $('openid_highlight');
 		if (highlight) {
-			fc = highlight.firstChild;
+			var fc = highlight.firstChild;
 			highlight.parentNode.replaceChild(fc, highlight);
 		}
 		// add new highlight.
