@@ -57,7 +57,7 @@ var openid = {
 				openid_btns.insert(box);
 			}
 		}
-		$('openid_form').submit = this.submit;
+		$('openid_form').onsubmit = this.submit;
 		var box_id = this.readCookie();
 		if (box_id) {
 			this.signin(box_id, true);
