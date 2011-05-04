@@ -158,7 +158,7 @@ moose.openidselector.prototype.submit = function() {
 		alert(this.demo_text + "\r\n" + this.input_element.value);
 		return false;
 	}
-	if (url.indexOf("javascript:") == 0) {
+	if (url && url.indexOf("javascript:") == 0) {
 		url = url.substr("javascript:".length);
 		eval(url);
 		return false;
