@@ -88,7 +88,7 @@ moose.openidselector.prototype.getBoxHTML = function(box_id, provider, box_size,
     if (this.no_sprite) {
         var image_ext = (box_size == 'small') ? '.ico.gif' : '.gif';
         var box = goog.dom.createDom('a', {
-                'title' : this.image_title.replace('{provider}', provider["name"]),
+                'title' : this.image_title.replace('{provider}', provider.name),
                 'href'  : 'javascript:openidselectorobject.signin(\'' + box_id + '\');',
 			    'style' : 'background: #FFF url(' + this.img_path + '../images.' + box_size + '/' + box_id + image_ext + ') no-repeat center center',
                 'class' : box_id + ' openid_' + box_size + '_btn'
@@ -98,7 +98,7 @@ moose.openidselector.prototype.getBoxHTML = function(box_id, provider, box_size,
 	var y = (box_size == 'small') ? -60 : 0;
 
 	var box = goog.dom.createDom('a', {
-                'title' : this.image_title.replace('{provider}', provider["name"]),
+                'title' : this.image_title.replace('{provider}', provider.name),
                 'href'  : 'javascript:openidselectorobject.signin(\'' + box_id + '\');',
 			    'style' : 'background: #FFF url(' + this.img_path + 'openid-providers-' + this.sprite + '.png); ' +
                           'background-position: ' + x + 'px ' + y + 'px',
@@ -127,9 +127,9 @@ moose.openidselector.prototype.signin = function(box_id, opt_onload) {
         this.cookie_path
     );                                                 
 	this.provider_id = box_id;
-	this.provider_url = provider['url'];
+	this.provider_url = provider.url;
 	// prompt user for input?
-	if (provider['label']) {
+	if (provider.label) {
 		this.useInputBox(provider);
 	} else {
 		goog.dom.removeChildren(this.openid_input_area);
@@ -215,7 +215,7 @@ moose.openidselector.prototype.useInputBox = function(provider) {
 	var input_area = this.openid_input_area;
 	var id = 'openid_username';
 	var value = '';
-	var label = provider['label'];
+	var label = provider.label;
 	var style = '';
     goog.dom.removeChildren(input_area);
 	if (label) {
@@ -224,7 +224,7 @@ moose.openidselector.prototype.useInputBox = function(provider) {
         var html = goog.dom.createDom('p', '');
     }
 	goog.dom.append(input_area,html);
-	if (provider['name'] == 'OpenID') {
+	if (provider.name == 'OpenID') {
 		id = this.input_id;
 		value = 'http://';
 		style = 'background: #FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';

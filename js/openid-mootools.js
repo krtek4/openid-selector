@@ -68,7 +68,7 @@ var openid = {
 			var image_ext = box_size == 'small' ? '.ico.gif' : '.gif';
 			return new Element('a', {
 				'href' : "javascript:openid.signin('" + box_id + "');",
-				'title' : this.image_title.replace('{provider}', provider["name"]),
+				'title' : this.image_title.replace('{provider}', provider.name),
 				'class' : box_id + ' openid_' + box_size + '_btn',
 				'styles' : {
 					'display' : 'block',
@@ -81,7 +81,7 @@ var openid = {
 		var y = box_size == 'small' ? -60 : 0;
 		return new Element('a', {
 			'href' : "javascript:openid.signin('" + box_id + "');",
-			'title' : this.image_title.replace('{provider}', provider["name"]),
+			'title' : this.image_title.replace('{provider}', provider.name),
 			'class' : box_id + ' openid_' + box_size + '_btn',
 			'styles' : {
 				'background' : '#FFF url(' + this.img_path + 'openid-providers-' + this.sprite + '.png'
@@ -104,9 +104,9 @@ var openid = {
 		this.highlight(box_id);
 		this.setCookie(box_id);
 		this.provider_id = box_id;
-		this.provider_url = provider['url'];
+		this.provider_url = provider.url;
 		// prompt user for input?
-		if (provider['label']) {
+		if (provider.label) {
 			this.useInputBox(provider);
 		} else {
 			$('openid_input_area').empty();
@@ -191,12 +191,12 @@ var openid = {
 		var html = '';
 		var id = 'openid_username';
 		var value = '';
-		var label = provider['label'];
+		var label = provider.label;
 		var style = '';
 		if (label) {
 			html = '<p>' + label + '</p>';
 		}
-		if (provider['name'] == 'OpenID') {
+		if (provider.name == 'OpenID') {
 			id = this.input_id;
 			value = 'http://';
 			style = 'background: #FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';

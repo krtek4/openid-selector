@@ -67,13 +67,13 @@ openid = {
 	getBoxHTML : function(box_id, provider, box_size, index) {
 		if (this.no_sprite) {
 			var image_ext = box_size == 'small' ? '.ico.gif' : '.gif';
-			return '<a title="' + this.image_title.replace('{provider}', provider["name"]) + '" href="javascript:openid.signin(\'' + box_id + '\');"'
+			return '<a title="' + this.image_title.replace('{provider}', provider.name) + '" href="javascript:openid.signin(\'' + box_id + '\');"'
 					+ ' style="background: #FFF url(' + this.img_path + '../images.' + box_size + '/' + box_id + image_ext + ') no-repeat center center" '
 					+ 'class="' + box_id + ' openid_' + box_size + '_btn"></a>';
 		}
 		var x = box_size == 'small' ? -index * 24 : -index * 100;
 		var y = box_size == 'small' ? -60 : 0;
-		return '<a title="' + this.image_title.replace('{provider}', provider["name"]) + '" href="javascript:openid.signin(\'' + box_id + '\');"'
+		return '<a title="' + this.image_title.replace('{provider}', provider.name) + '" href="javascript:openid.signin(\'' + box_id + '\');"'
 				+ ' style="background: #FFF url(' + this.img_path + 'openid-providers-' + this.sprite + '.png); background-position: ' + x + 'px ' + y + 'px" '
 				+ 'class="' + box_id + ' openid_' + box_size + '_btn"></a>';
 	},
@@ -91,9 +91,9 @@ openid = {
 		this.highlight(box_id);
 		this.setCookie(box_id);
 		this.provider_id = box_id;
-		this.provider_url = provider['url'];
+		this.provider_url = provider.url;
 		// prompt user for input?
-		if (provider['label']) {
+		if (provider.label) {
 			this.useInputBox(provider);
 		} else {
 			$('#openid_input_area').empty();
@@ -179,12 +179,12 @@ openid = {
 		var html = '';
 		var id = 'openid_username';
 		var value = '';
-		var label = provider['label'];
+		var label = provider.label;
 		var style = '';
 		if (label) {
 			html = '<p>' + label + '</p>';
 		}
-		if (provider['name'] == 'OpenID') {
+		if (provider.name == 'OpenID') {
 			id = this.input_id;
 			value = 'http://';
 			style = 'background: #FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
