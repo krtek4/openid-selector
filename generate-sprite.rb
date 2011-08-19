@@ -18,7 +18,7 @@ lang = ARGV[0] || "en"
 
 cxt = V8::Context.new
 cxt['openid'] = {}
-cxt.load "js/openid-#{lang}.js"
+cxt.load "js/locales/openid-#{lang}.js"
 
 # generate small montage
 cmd = "#{imagemagick}montage"
