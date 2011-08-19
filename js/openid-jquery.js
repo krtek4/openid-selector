@@ -34,7 +34,10 @@ openid = {
 	 *
 	 * @return {Void}
 	 */
-	init : function(input_id) {
+	init : function(input_id, img_path) {
+		if(img_path) {
+			this.img_path = img_path;
+		}
 		providers = $.extend({}, providers_large, providers_small);
 		var openid_btns = $('#openid_btns');
 		this.input_id = input_id;
