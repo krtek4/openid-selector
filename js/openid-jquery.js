@@ -1,7 +1,7 @@
 /*
 	Simple OpenID Plugin
 	http://code.google.com/p/openid-selector/
-	
+
 	This code is licensed under the New BSD License.
 */
 
@@ -16,7 +16,7 @@ openid = {
 	cookie_name : 'openid_provider',
 	cookie_path : '/',
 
-	img_path : 'images/',
+	img_path : 'authopenid/file/images/',
 	locale : null, // is set in openid-<locale>.js
 	sprite : null, // usually equals to locale, is set in
 	// openid-<locale>.js
@@ -31,7 +31,7 @@ openid = {
 
 	/**
 	 * Class constructor
-	 * 
+	 *
 	 * @return {Void}
 	 */
 	init : function(input_id) {
@@ -80,7 +80,7 @@ openid = {
 
 	/**
 	 * Provider image click
-	 * 
+	 *
 	 * @return {Void}
 	 */
 	signin : function(box_id, onload) {
@@ -105,7 +105,7 @@ openid = {
 
 	/**
 	 * Sign-in button click
-	 * 
+	 *
 	 * @return {Boolean}
 	 */
 	submit : function() {
