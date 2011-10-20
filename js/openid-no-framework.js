@@ -160,7 +160,7 @@ var openid = {
 			hidden.value = url;
 		} else {
 			var toAdd = document.createElement('input');
-			toAdd.type = hidden;
+			toAdd.type = 'hidden';
 			toAdd.id = this.input_id;
 			toAdd.name = this.input_id;
 			toAdd.value = url;
